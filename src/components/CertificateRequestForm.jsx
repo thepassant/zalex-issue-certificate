@@ -1,19 +1,24 @@
 import { useState } from "react";
-import { connect } from "react-redux";
-import { submitCertificateRequest } from "../redux/actions/certificateActions";
+// import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { submitCertificateRequest } from "../redux/certificate/asyncActions/CertificateAsyncActions";
+import {
+  getCertificateIsLoading,
+  getCertificateSubmissionStatus,
+} from "../redux/certificate/selectors/CertificateSelectors";
 
-function CertificateRequestForm({
-  submitCertificateRequest,
-  submissionStatus,
-  loading,
-  error,
-}) {
-  const [formData, setFormData] = useState({
-    addressTo: "",
-    purpose: "",
-    issuedOn: "",
-    employeeId: "",
-  });
+function CertificateRequestForm({ error }) {
+  const loading = useSelector(getCertificateIsLoading);
+  const submissionStatus = useSelector(getCertificateSubmissionStatus);
+  const dispatch = useDispatch(),
+    [formData, setFormData] = useState({
+      addressTo: "",
+      purpose: "",
+      issuedOn: "",
+      employeeId: "",
+    });
+
+  console.log(submissionStatus);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +30,7 @@ function CertificateRequestForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitCertificateRequest(formData);
+    dispatch(submitCertificateRequest(formData));
   };
 
   return (
@@ -84,22 +89,12 @@ function CertificateRequestForm({
       {submissionStatus === "success" && (
         <p>Your certificate request has been submitted successfully.</p>
       )}
-      {error && <p>Error: {error}</p>}
+      {/* {submissionStatus === "success" && (
+        <p>Your certificate request has been submitted successfully.</p>
+      )}
+      {/* {error && <p>Error: {error}</p>} */}
     </div>
   );
 }
 
-const mapStateToProps = (state) => ({
-  submissionStatus: state.certificate.submissionStatus,
-  loading: state.certificate.loading,
-  error: state.certificate.error,
-});
-
-const mapDispatchToProps = {
-  submitCertificateRequest,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CertificateRequestForm);
+export default CertificateRequestForm;
