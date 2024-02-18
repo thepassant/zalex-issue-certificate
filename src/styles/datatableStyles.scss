@@ -22,6 +22,33 @@ $blue-gray-600: #475569;
   border-radius: 6px;
 }
 
+.status {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.4rem;
+  width: fit-content;
+  margin: 0;
+  background-color: $white;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%),
+    0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+  &.success {
+    color: $success;
+  }
+
+  &.warn {
+    color: $warning;
+  }
+
+  &.danger {
+    color: $danger;
+  }
+  &.info {
+    color: $primary;
+  }
+}
+
 .is-flex {
   display: flex;
 }
@@ -119,7 +146,6 @@ $blue-gray-600: #475569;
     background-size: 20px 20px;
     box-shadow: 0 3px 7px 0 rgb(0 0 0 / 20%), 0 3px 8px 0 rgb(0 0 0 / 19%);
     border-radius: 5px;
-    width: 100%;
     min-width: 0;
     padding: 0.5em 1em 0.5em 2.5em;
 

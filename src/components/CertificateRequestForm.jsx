@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { submitCertificateRequest } from "../redux/certificate/asyncActions/CertificateAsyncActions";
 import {
@@ -7,7 +6,7 @@ import {
   getCertificateSubmissionStatus,
 } from "../redux/certificate/selectors/CertificateSelectors";
 
-function CertificateRequestForm({ error }) {
+function CertificateRequestForm() {
   const loading = useSelector(getCertificateIsLoading);
   const submissionStatus = useSelector(getCertificateSubmissionStatus);
   const dispatch = useDispatch(),

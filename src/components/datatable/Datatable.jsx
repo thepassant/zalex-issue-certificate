@@ -21,7 +21,6 @@ const Datatable = ({
   resetCurrentPaginationPage,
   actions,
 }) => {
-  console.log(records);
   const columnsRef = useRef(columns),
     actionsRef = useRef(actions),
     [sorting, setSorting] = useState({
@@ -161,8 +160,6 @@ const Datatable = ({
     remoteDataControl?.totalItems,
     rowsPerPageNum,
   ]);
-
-  console.log(recordsData);
 
   return (
     <Paper className="outer-table-wrapper">

@@ -7,8 +7,6 @@ const Portal = ({ children, wrapperElement, wrapperElementId }) => {
 
   useEffect(() => {
     let element = document.getElementById(wrapperElementId);
-    // if element is not found with wrapperElementId or wrapperElementId is not provided,
-    // create and append to body
     if (!element) {
       element = createWrapperAndAppendToBody(wrapperElement, wrapperElementId);
     }
