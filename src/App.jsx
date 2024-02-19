@@ -1,7 +1,7 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CertificateRequestForm from "./components/CertificateRequestForm";
 import RequestsList from "./components/RequestsList";
+import Button from "./components/Button";
 
 function App() {
   return (
@@ -10,10 +10,10 @@ function App() {
         <div>
           <nav>
             <Link to="/create-request">
-              <button>Create Certificate Request</button>
+              <Button className="button">Create Certificate Request</Button>
             </Link>
             <Link to="/view-requests">
-              <button>View Submitted Requests</button>
+              <Button className="button">View Submitted Requests</Button>
             </Link>
           </nav>
 

@@ -1,0 +1,25 @@
+html,
+body,
+#app {
+  height: 100%;
+}
+
+#app {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+//gradient text styles
+.gradient-text-color {
+  display: block;
+  background: $bluish-primary;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

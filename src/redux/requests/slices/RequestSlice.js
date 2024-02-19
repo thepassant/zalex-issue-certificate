@@ -4,15 +4,30 @@ import { fetchRequestsList } from "../asyncActions/RequestAsyncActions";
 const initialState = {
   requestsList: [],
   isLoading: false,
+  isEditModalActive: false,
+  isDownloadModalActive: false,
+  targetRequestData: null,
 };
 
 const requestSlice = createSlice({
   name: "request",
   initialState,
   reducers: {
-    // updateTestString: (state) => {
-    //   state.testString = "Final test";
-    // },
+    openEditRequestModal: (state) => {
+      state.isEditModalActive = true;
+    },
+    closeEditRequestModal: (state) => {
+      state.isEditModalActive = false;
+    },
+    openDownloadRequestModal: (state) => {
+      state.isDownloadModalActive = true;
+    },
+    closeDownloadRequestModal: (state) => {
+      state.isDownloadModalActive = false;
+    },
+    setTargetRequestData: (state, action) => {
+      state.targetRequestData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -29,5 +44,11 @@ const requestSlice = createSlice({
   },
 });
 
-export const { updateTestString } = requestSlice.actions;
+export const {
+  openEditRequestModal,
+  closeEditRequestModal,
+  openDownloadRequestModal,
+  closeDownloadRequestModal,
+  setTargetRequestData,
+} = requestSlice.actions;
 export default requestSlice.reducer;

@@ -1,0 +1,365 @@
+.button {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.889rem;
+  transition: box-shadow 0.3s;
+  transform: translateZ(0);
+  padding: 0.2rem 1rem;
+  letter-spacing: 0.05rem;
+
+  &.primary {
+    color: $white;
+    background-color: $primary;
+
+    &:hover {
+      background-color: #0069d9;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.secondary {
+    color: $white;
+    background-color: $secondary;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.warning {
+    color: $white;
+    background-color: $warning;
+
+    &:hover {
+      background-color: #e0a800;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.danger {
+    color: $white;
+    background-color: $danger;
+
+    &:hover {
+      background-color: #c82333;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.success {
+    color: $white;
+    background-color: $success;
+
+    &:hover {
+      background-color: #218838;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.info {
+    color: $white;
+    background-color: $info;
+
+    &:hover {
+      background-color: #138496;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $white;
+    }
+  }
+
+  &.lightGrey {
+    background: $blue-gray-200;
+    color: $blue-gray-500;
+    border-color: transparent;
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $blue-gray-500;
+    }
+  }
+
+  &.white {
+    background-color: $white;
+    box-shadow: 1px 1px 4px 1px rgb(0 0 0 / 20%);
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $black;
+    }
+  }
+
+  &.outline {
+    color: $purple;
+    background: transparent;
+    border: 1px solid $purple;
+    padding: 0.2rem 0.75rem;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    .button-icon {
+      fill: $purple;
+    }
+  }
+
+  &.text {
+    color: $black;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:disabled {
+      @include disable-background;
+    }
+
+    .button-icon {
+      fill: $black;
+    }
+  }
+
+  &.ghost {
+    color: $black;
+    border: 1px solid $blue-gray-500;
+
+    &:disabled {
+      @include disable-outlined-background;
+    }
+    .button-icon {
+      fill: $black;
+    }
+  }
+
+  // size small
+  &.small {
+    -webkit-text-fill-color: unset;
+    font-size: 12px;
+    padding: 0.3rem 0.66rem;
+
+    &.round {
+      height: 1.75rem;
+      width: 1.75rem;
+    }
+  }
+
+  &.default {
+    &.round {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+  // size large
+  &.large {
+    padding: 0.5rem 1rem;
+    border-radius: 0.89rem;
+    font-weight: 500;
+
+    &.round {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+
+  &.round {
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  &.fluid {
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 8px 3px rgb(0 0 0 / 20%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  .button-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+//modal component styles
+.modal-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transition: opacity 0.3s;
+
+  &.inactive-modal {
+    transition: height 0s 0.3s, opacity 0.3s;
+    height: 0;
+    opacity: 0;
+  }
+
+  .modal-wrapper {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  .modal {
+    margin: 0 auto;
+    z-index: 500;
+    background-color: $white;
+    width: calc(100% - 1rem);
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    cursor: initial;
+    transform: translateY(-100%);
+    opacity: 0;
+
+    & * {
+      box-sizing: border-box;
+    }
+
+    &.animate-modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-btn {
+      margin-right: 8px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .modal-header {
+      position: relative;
+      padding: 10px;
+      border-bottom: 1px solid $grey-100;
+      font-weight: 300;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      & > div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .modal-title {
+        margin: 0;
+        line-height: 1.42857143;
+        text-transform: capitalize;
+      }
+
+      .header-close-btn {
+        padding: 0;
+        cursor: pointer;
+        border: 0;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        color: black;
+        text-shadow: 0 1px 0 $white;
+        outline: none;
+        opacity: 0.2;
+        transition: opacity 0.15s;
+        background-color: transparent;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      p {
+        margin: 5px 0 0;
+        font-size: 14px;
+      }
+    }
+
+    .modal-body {
+      position: relative;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .modal-footer {
+      padding: 10px;
+      text-align: right;
+      border-top: 1px solid $grey-100;
+    }
+  }
+}

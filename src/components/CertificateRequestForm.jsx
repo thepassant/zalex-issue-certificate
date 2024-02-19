@@ -33,9 +33,9 @@ function CertificateRequestForm() {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="control">
           <label htmlFor="addressTo">Address to</label>
           <textarea
             id="addressTo"
@@ -46,7 +46,7 @@ function CertificateRequestForm() {
             pattern="[A-Za-z0-9\s]+"
           />
         </div>
-        <div>
+        <div className="control">
           <label htmlFor="purpose">Purpose</label>
           <textarea
             id="purpose"
@@ -58,7 +58,7 @@ function CertificateRequestForm() {
             style={{ minHeight: "100px" }}
           />
         </div>
-        <div>
+        <div className="control">
           <label htmlFor="issuedOn">Issued on</label>
           <input
             type="date"
@@ -70,7 +70,7 @@ function CertificateRequestForm() {
             min={new Date().toISOString().split("T")[0]}
           />
         </div>
-        <div>
+        <div className="control">
           <label htmlFor="employeeId">Employee ID</label>
           <input
             type="text"
@@ -82,7 +82,9 @@ function CertificateRequestForm() {
             pattern="\d+"
           />
         </div>
-        <button type="submit">Request Certificate</button>
+        <button type="submit" className="button">
+          Request Certificate
+        </button>
       </form>
       {loading && <p>Submitting...</p>}
       {submissionStatus === "success" && (
@@ -92,7 +94,7 @@ function CertificateRequestForm() {
         <p>Your certificate request has been submitted successfully.</p>
       )}
       {/* {error && <p>Error: {error}</p>} */}
-    </div>
+    </>
   );
 }
 

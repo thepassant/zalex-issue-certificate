@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import DatatableIconButton from "./DatatableIconButton";
 import { rowsPerPageOptions } from "../../constants/Constants";
-import { getNestedValue } from "../../constants/Helpers";
+import { flatten, getNestedValue } from "../../constants/Helpers";
 import LoadingIcon from "../icons/Loadingicon";
 import Paper from "../Paper";
 import DatatableTitle from "./DatatableTitle";
@@ -9,7 +9,6 @@ import cloneDeep from "lodash/cloneDeep";
 import DatatableHeader from "./DatatableHeader";
 import DatatableBodyRow from "./DatatableBodyRow";
 import Pagination from "./Pagination";
-import "../../styles/datatableStyles.scss";
 
 const Datatable = ({
   columns,
