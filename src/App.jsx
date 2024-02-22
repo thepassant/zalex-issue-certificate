@@ -1,32 +1,29 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import CertificateRequestForm from "./components/CertificateRequestForm";
 import RequestsList from "./components/RequestsList";
 import Button from "./components/Button";
 
 function App() {
-  return (
-    <>
-      <Router>
-        <div>
-          <nav>
-            <Link to="/create-request">
-              <Button className="button">Create Certificate Request</Button>
-            </Link>
-            <Link to="/view-requests">
-              <Button className="button">View Submitted Requests</Button>
-            </Link>
-          </nav>
+  const navigate = useNavigate();
 
-          <Routes>
-            <Route
-              path="/create-request"
-              element={<CertificateRequestForm />}
-            />
-            <Route path="/view-requests" element={<RequestsList />} />
-          </Routes>
-        </div>
-      </Router>
-    </>
+  return (
+    <div>
+      <nav style={{ display: "flex", justifyContent: "center", padding: 15 }}>
+        <Button
+          label="Create Certificate Request"
+          onClick={() => navigate("/create-request")}
+        />
+        <Button
+          label="View Submitted Requests"
+          onClick={() => navigate("/view-requests")}
+        />
+      </nav>
+
+      <Routes>
+        <Route path="/create-request" element={<CertificateRequestForm />} />
+        <Route path="/view-requests" element={<RequestsList />} />
+      </Routes>
+    </div>
   );
 }
 

@@ -9,10 +9,12 @@ import {
 import DownloadIcon from "./icons/DownloadIcon";
 import UpdateIcon from "./icons/UpdateIcon";
 import {
+  openDownloadRequestModal,
   openEditRequestModal,
   setTargetRequestData,
 } from "../redux/requests/slices/RequestSlice";
 import EditRequestModal from "./EditRequestModal";
+import DownloadRequestModal from "./DownloadRequestModal";
 
 const getRequestsDataTableConfig = (
   requestsDetails,
@@ -99,7 +101,8 @@ function RequestsList() {
   }, [dispatch]);
 
   const downloadRequest = (rowData) => {
-    console.log("download", rowData);
+    dispatch(setTargetRequestData(rowData));
+    dispatch(openDownloadRequestModal());
   };
 
   const editRequest = (rowData) => {
@@ -120,6 +123,7 @@ function RequestsList() {
         actions={requestsActions}
       />
       <EditRequestModal />
+      <DownloadRequestModal />
     </>
   );
 }

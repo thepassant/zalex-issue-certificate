@@ -7,6 +7,7 @@ function useLockScroll({ targetElement = document.body, immediate = true }) {
       ? window.getComputedStyle(targetElement).overflow
       : "auto";
     if (immediate && targetElement) {
+      console.log("prevent scroll");
       // Prevent scrolling on mount
       targetElement.style.overflow = "hidden";
     }

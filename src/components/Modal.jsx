@@ -26,7 +26,7 @@ const Modal = ({ header, footer, wrapper, maxWidth, className, children }) => {
 
   useLockScroll({
     immediate: show,
-    targetElement: document.getElementById("app"),
+    targetElement: document.getElementById("root"),
   });
 
   const shortcutsHandler = (event) => {
