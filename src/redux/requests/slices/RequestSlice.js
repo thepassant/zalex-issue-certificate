@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRequestsList } from "../asyncActions/RequestAsyncActions";
+import cloneDeep from "lodash/cloneDeep";
 
 const initialState = {
   requestsList: [],
@@ -28,6 +29,18 @@ const requestSlice = createSlice({
     setTargetRequestData: (state, action) => {
       state.targetRequestData = action.payload;
     },
+    editRequestItem: (state, action) => {
+      const newRequestsList = cloneDeep(state.requestsList),
+        requiredRequestToEdit = newRequestsList.find(
+          (el) => el.reference_no === action.payload.reference_no
+        );
+
+      if (requiredRequestToEdit) {
+        requiredRequestToEdit.purpose = action.payload.purpose;
+      }
+
+      state.requestsList = newRequestsList;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,5 +63,6 @@ export const {
   openDownloadRequestModal,
   closeDownloadRequestModal,
   setTargetRequestData,
+  editRequestItem,
 } = requestSlice.actions;
 export default requestSlice.reducer;

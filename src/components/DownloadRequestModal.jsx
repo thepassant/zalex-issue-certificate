@@ -31,19 +31,6 @@ const DownloadRequestModal = () => {
     dispatch(closeDownloadRequestModal());
     dispatch(setTargetRequestData(null));
   };
-  //   const downloadClickHandler = () => {
-  //     const [instance, updateInstance] = usePDF({ document: MyDocument });
-
-  //     if (instance.loading) return <div>Loading ...</div>;
-
-  //     if (instance.error) return <div>Something went wrong: {error}</div>;
-
-  //     return (
-  //       <a href={instance.url} download="test.pdf">
-  //         Download
-  //       </a>
-  //     );
-  //   };
 
   const footerButtons = [
     {
@@ -59,9 +46,7 @@ const DownloadRequestModal = () => {
               : "Certificate"
           }.pdf`}
         >
-          {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download"
-          }
+          {({ loading }) => (loading ? "Loading document..." : "Download")}
         </PDFDownloadLink>
       ),
     },

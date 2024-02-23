@@ -82,7 +82,7 @@ function CertificateRequestForm() {
             pattern="\d+"
           />
         </div>
-        <button type="submit" className="button">
+        <button type="submit" className="submit-button">
           Request Certificate
         </button>
       </form>

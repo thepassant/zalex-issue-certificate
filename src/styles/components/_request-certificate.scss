@@ -27,6 +27,37 @@ form {
 .control,
 fieldset {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.view {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: #000000;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    max-width: 25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #758a8a;
+    background-color: #cbd1d1;
+
+    &.disabled {
+      color: #9f9f9f;
+      background-color: #e5e6e6;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .control.no-margin {
@@ -40,12 +71,12 @@ fieldset {
   color: #9bafaf;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 20px 0;
 }
 
 .control input {
-  display: block;
   width: 100%;
-  max-width: 15rem;
+  max-width: 25rem;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 4px;
@@ -54,9 +85,8 @@ fieldset {
   color: #142020;
 }
 .control textarea {
-  display: block;
   width: 100%;
-  max-width: 15rem;
+  max-width: 25rem;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 4px;
@@ -89,7 +119,7 @@ fieldset {
   gap: 1rem;
 }
 
-.button {
+.submit-button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 4px;

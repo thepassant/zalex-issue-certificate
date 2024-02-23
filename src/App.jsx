@@ -10,6 +10,7 @@ function App() {
     <div>
       <nav style={{ display: "flex", justifyContent: "center", padding: 15 }}>
         <Button
+          variant="success"
           label="Create Certificate Request"
           onClick={() => navigate("/create-request")}
         />
