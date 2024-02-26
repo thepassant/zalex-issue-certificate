@@ -14,7 +14,6 @@ const certificateSlice = createSlice({
     builder
       .addCase(submitCertificateRequest.pending, (state) => {
         state.isLoading = true;
-        toast.warning("Submitting...");
       })
       .addCase(submitCertificateRequest.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -26,7 +25,7 @@ const certificateSlice = createSlice({
       .addCase(submitCertificateRequest.rejected, (state) => {
         state.isLoading = false;
         state.submissionStatus = "failed";
-        toast.danger(`error: {error}`);
+        toast.error("Something went wrong");
       });
   },
 });

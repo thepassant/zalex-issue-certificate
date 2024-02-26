@@ -103,8 +103,6 @@ function CertificateRequestForm() {
           Request Certificate
         </button>
       </form>
-
-      {loading && <p>Submitting...</p>}
     </>
   );
 }
