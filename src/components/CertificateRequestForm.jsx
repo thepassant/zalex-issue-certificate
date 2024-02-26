@@ -1,99 +1,110 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 import { submitCertificateRequest } from "../redux/certificate/asyncActions/CertificateAsyncActions";
+import "react-toastify/dist/ReactToastify.css";
 import {
   getCertificateIsLoading,
   getCertificateSubmissionStatus,
 } from "../redux/certificate/selectors/CertificateSelectors";
-
+import { useEffect } from "react";
 function CertificateRequestForm() {
-  const loading = useSelector(getCertificateIsLoading);
-  const submissionStatus = useSelector(getCertificateSubmissionStatus);
-  const dispatch = useDispatch(),
-    [formData, setFormData] = useState({
-      addressTo: "",
-      purpose: "",
-      issuedOn: "",
-      employeeId: "",
-    });
+  const loading = useSelector(getCertificateIsLoading),
+    submissionStatus = useSelector(getCertificateSubmissionStatus),
+    dispatch = useDispatch(),
+    {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm({ mode: "onChange" });
 
-  console.log(submissionStatus);
+  useEffect(() => {
+    if (submissionStatus === "success") {
+      reset();
+    }
+  }, [submissionStatus]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmitForm = (formData) => {
     dispatch(submitCertificateRequest(formData));
   };
-
+  const validateFutureDate = (inputDate) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(inputDate);
+    currentDate.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+    return selectedDate > currentDate || "The date must be in the future";
+  };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmitForm)}>
         <div className="control">
-          <label htmlFor="addressTo">Address to</label>
+          <label>Address to</label>
           <textarea
-            id="addressTo"
-            name="addressTo"
-            value={formData.addressTo}
-            onChange={handleInputChange}
-            required
-            pattern="[A-Za-z0-9\s]+"
+            {...register("addressTo", {
+              required: {
+                value: true,
+                message: "Address to field is required",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9]+$/,
+                message: "Only alphanumeric characters are allowed",
+              },
+            })}
           />
+          <div className="control-error">
+            {errors.addressTo && <p>{errors.addressTo.message}</p>}
+          </div>
         </div>
         <div className="control">
-          <label htmlFor="purpose">Purpose</label>
+          <label>Purpose</label>
           <textarea
-            id="purpose"
-            name="purpose"
-            value={formData.purpose}
-            onChange={handleInputChange}
-            required
-            minLength="50"
-            style={{ minHeight: "100px" }}
+            {...register("purpose", {
+              required: { value: true, message: "Purpose field is required" },
+              minLength: { value: 50, message: "Minimum length should be 50" },
+            })}
           />
+          <div className="control-error">
+            {errors.purpose && <p>{errors.purpose.message}</p>}
+          </div>
         </div>
         <div className="control">
-          <label htmlFor="issuedOn">Issued on</label>
+          <label>Issued on</label>
           <input
             type="date"
-            id="issuedOn"
-            name="issuedOn"
-            value={formData.issuedOn}
-            onChange={handleInputChange}
-            required
-            min={new Date().toISOString().split("T")[0]}
+            {...register("issuedOn", {
+              valueAsDate: true,
+              required: { value: true, message: "Issued on field is required" },
+              validate: validateFutureDate,
+            })}
           />
+          <div className="control-error">
+            {errors.issuedOn && <p>{errors.issuedOn.message}</p>}
+          </div>
         </div>
         <div className="control">
-          <label htmlFor="employeeId">Employee ID</label>
+          <label>Employee ID</label>
           <input
-            type="text"
-            id="employeeId"
-            name="employeeId"
-            value={formData.employeeId}
-            onChange={handleInputChange}
-            required
-            pattern="\d+"
+            {...register("employeeId", {
+              required: {
+                value: true,
+                message: "Employee ID field is required",
+              },
+              pattern: {
+                value: /^\d+$/,
+                message: "Only numbers are allowed",
+              },
+            })}
           />
+          <div className="control-error">
+            {errors.employeeId && <p>{errors.employeeId.message}</p>}
+          </div>
         </div>
         <button type="submit" className="submit-button">
           Request Certificate
         </button>
       </form>
+
       {loading && <p>Submitting...</p>}
-      {submissionStatus === "success" && (
-        <p>Your certificate request has been submitted successfully.</p>
-      )}
-      {/* {submissionStatus === "success" && (
-        <p>Your certificate request has been submitted successfully.</p>
-      )}
-      {/* {error && <p>Error: {error}</p>} */}
     </>
   );
 }

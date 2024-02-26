@@ -28,20 +28,8 @@ form {
 fieldset {
   margin-bottom: 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-}
-.view {
-  margin-bottom: 1rem;
-
-  label {
-    display: block;
-    font-size: 0.8rem;
-    margin-bottom: 0.2rem;
-    color: #000000;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
   input,
   textarea {
     width: 100%;
@@ -59,7 +47,31 @@ fieldset {
     }
   }
 }
+.view {
+  margin-bottom: 1rem;
 
+  label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: #000000;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+.control-error {
+  display: flex;
+  width: 70%;
+  left: 30%;
+  position: relative;
+  color: #ffca99;
+  font-size: 0.8rem;
+  height: 2rem;
+  padding: 0.5rem 0;
+  p {
+    margin: 0;
+  }
+}
 .control.no-margin {
   margin-bottom: 0;
 }
@@ -93,24 +105,6 @@ fieldset {
   border: 1px solid #758a8a;
   background-color: #869999;
   color: #142020;
-}
-
-.control-error {
-  color: #ffca99;
-  font-size: 0.8rem;
-  height: 2rem;
-  padding: 0.5rem 0;
-}
-
-.control-error p {
-  margin: 0;
-}
-
-.control-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1rem;
 }
 
 .form-actions {

@@ -6,6 +6,6 @@ export const submitCertificateRequest = createAsyncThunk(
   async function (formData) {
     const response = await CertificateService.sendCertificateData(formData);
 
-    return response.data.responce;
+    return response.data.response;
   }
 );

@@ -2,6 +2,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import CertificateRequestForm from "./components/CertificateRequestForm";
 import RequestsList from "./components/RequestsList";
 import Button from "./components/Button";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create-request" element={<CertificateRequestForm />} />
         <Route path="/view-requests" element={<RequestsList />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

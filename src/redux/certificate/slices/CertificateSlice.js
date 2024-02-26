@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { submitCertificateRequest } from "../asyncActions/CertificateAsyncActions";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoading: false,
@@ -9,26 +10,25 @@ const initialState = {
 const certificateSlice = createSlice({
   name: "certificate",
   initialState,
-  reducers: {
-    // updateTestString: (state) => {
-    //   state.testString = "Final test";
-    // },
-  },
   extraReducers: (builder) => {
     builder
       .addCase(submitCertificateRequest.pending, (state) => {
         state.isLoading = true;
+        toast.warning("Submitting...");
       })
       .addCase(submitCertificateRequest.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.submissionStatus =
-          action.payload === "Ok" ? "success" : "failure";
+        state.submissionStatus = "success";
+        toast.success(
+          "Your certificate request has been submitted successfully."
+        );
       })
       .addCase(submitCertificateRequest.rejected, (state) => {
         state.isLoading = false;
+        state.submissionStatus = "failed";
+        toast.danger(`error: {error}`);
       });
   },
 });
 
-export const { updateTestString } = certificateSlice.actions;
 export default certificateSlice.reducer;
